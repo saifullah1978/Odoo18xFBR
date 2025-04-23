@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="push_to_fbr_action" model="ir.actions.server">
+        <field name="name">Push to FBR</field>
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">
+                record = self.env.context.get('active_id')
+                record = self.env['sale.order'].browse(record)
+                record.fbr_integration.push_sale_data_to_fbr()
+        </field>
+    </record>
+</odoo>
